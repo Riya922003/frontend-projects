@@ -1,0 +1,152 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+ 
+
+body, html{
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+
+.outer-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; 
+    background-color: hsl(235, 22%, 30%);
+}
+
+
+.inner-container{
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+    height: 70%;
+    box-sizing: border-box;
+    border-radius: 17px;
+    background-color: #fff;
+}
+
+
+.top-row {
+    height: 20%;
+    display: flex;
+}
+
+
+.bottom-row {
+    height: 80%;
+    display: flex;
+}
+
+
+.left-column {
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    border-radius: 17px;
+}
+
+
+.right-column{
+    border-radius: 17px;
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+
+.image {
+    max-width: 100%;
+    max-height: 100%;
+    border-radius: 10px;
+    margin:7px;
+}
+
+
+.button-container{
+    max-width:60%;
+    margin-left:12px;
+    margin-top:8px;
+    margin-bottom:8px;
+    margin-right:8px;
+}
+
+
+button {
+    padding-top: 2px;
+    padding-bottom: 2px;
+    background-color:hsl(234, 29%, 20%);
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width:70%;
+    font-size:16px;
+}
+
+
+button:hover {
+    background-color:hsl(235, 22%, 30%);
+}
+
+
+h4{
+    display:inline;
+    margin-left:12px;
+}
+
+
+h2{
+    margin-top:5px;
+    margin-bottom:5px;
+    margin-left:15px;
+    margin-right:5px;
+}
+
+
+p{
+    margin-top:5px;
+    margin-bottom:5px;
+    margin-left:17px;
+    margin-right:5px;
+}
+
+
+@media(max-width:374px){
+    .inner-container{
+        height: 100vh; 
+        width:100vw;
+        border-radius:0px;
+    }
+
+    button{
+        margin:12px;
+        padding-top: 12px;
+        padding-bottom: 12px;
+    }
+
+    h2{
+        margin-top:5px;
+        margin-bottom:5px;
+        margin-left:15px;
+        margin-right:5px;
+    }
+
+    p{
+        margin-top:5px;
+        margin-bottom:5px;
+        margin-left:15px;
+        margin-right:5px;
+    }
+    
+    .image {
+        max-width: 100%;
+        max-height: 100%;
+        border-radius: 10px;
+        margin:12px;
+    }
+}
