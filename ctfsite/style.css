@@ -1,0 +1,305 @@
+body {
+	margin: 0;
+	background-color: #111;
+  overflow-y: scroll;
+  scroll-behavior:smooth;
+}
+
+.starfield {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: -1;
+	pointer-events: none;
+}
+.star {
+	position: absolute;
+	background-color: grey;
+	border-radius: 50%;
+	opacity: 0;
+}
+
+/* Animation */
+@keyframes blink {
+	0% {
+		opacity: 0;
+	}
+	50% {
+		opacity: 1;
+	}
+	100% {
+		opacity: 0;
+	}
+}
+
+.main {
+	color: white;
+}
+
+
+
+
+
+header {
+  background-color: transparent; /* Set background color for header */
+  padding: 1rem 2rem; /* Add padding to header content */
+}
+
+
+/* CSS for the blurry footer content */
+.blurry-footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  padding: 20px;
+  text-align: center;
+  background-color: transparent; /* Adjust the background color and opacity as needed */
+  backdrop-filter: blur(10px); /* Adjust the blur radius as needed */
+}
+
+.blurry-content {
+  backdrop-filter: blur(5px); /* Adjust the blur radius as needed */
+	color: white;
+  display: inline-block; /* Ensure blur is applied to the content */
+}
+
+
+
+.container {
+  display: flex; /* Arrange elements horizontally */
+  justify-content: space-between; /* Distribute elements evenly */
+  align-items: center; /* Align elements vertically */
+}
+
+nav {
+  display: flex; /* Arrange links horizontally */
+	
+
+}
+
+nav a {
+  text-decoration: none;
+	font-family: 'Roboto', sans-serif;
+	font-size: 18px;
+  margin-right: 3rem;
+  color: rgba(0, 200, 0, 0.95);
+	text-shadow: 0 0 10px rgb(80, 80, 80),
+		0 0 20px rgb(80, 80, 80),
+		0 0 30px rgb(80, 80, 80),
+		0 0 40px rgb(80, 80, 80);
+  position: relative; /* Add position relative for pseudo-element positioning */
+  transition: transform 0.5s ease-in-out, text-shadow 0.5s ease-in-out; /* Set transition for smooth effects */
+}
+
+nav a::before {
+    content: '';
+    background-color: rgba(255, 1, 6, 0.6);
+    width: 0;
+    height: 2px;
+    position: absolute;
+    transition: width 0.7s ease; /* Only transition the width property */
+}
+
+nav a.hover {
+  transform: translateY(-5px); /* Raise link on hover */
+  color: rgb(255, 0, 0);
+  text-shadow: 0 0 10px rgb(255, 0, 0),
+	  0 0 30px rgb(255, 0, 0),
+	  0 0 40px rgb(255, 0, 0); /* Increased glow size */
+}
+
+
+
+
+.logo {
+  width: 50px; /* Adjust logo width as needed */
+}
+
+.logo2 {
+  width: 50px; /* Adjust logo width as needed */
+}
+
+
+
+
+
+.button {
+	height: 10vh;
+  position: absolute; /* Positioning the button absolutely */
+  top: 170%; 
+  right: 44%; /* Adjust the left position */ 
+}
+
+.button button {
+  background-color: transparent ; 
+  color: #fff;
+  padding: 1px 10px;
+  border: 3px solid #00A000; 
+  border-radius: 30px;
+  cursor: not-allowed;
+  line-height: 0.7; /* Reduced line spacing */
+  transition: background-color 0.3s ease, box-shadow 0.3s ease; /* Add transition for background color and box-shadow */
+  text-align: right; /* Left align text */
+	box-shadow: 0 0 400px rgb(81, 81, 81); /* Add neon glow effect on hover */
+	transition: transform 0.5s ease-in-out, text-shadow 0.5s ease-in-out;
+	@media (max-width: 20vh) {
+     /* Styles for screens smaller than 768px */
+    font-size: 15px; /* Smaller font size for smaller screens */
+    padding: 0px 6px; /* Adjust padding for smaller font size */
+   }
+}
+
+
+.button button::before {
+	transition: width 0.7s ease;
+	
+	
+}
+
+.button button:hover {
+	transform: translateY(-8px);
+	background: #00ff00;
+	box-shadow: 0 0 10px #00ff00,
+		0 0 30px #00ff00,
+		0 0 50px #00ff00;
+	border-radius: 30px;
+	border: 3px solid #00ff00; 
+}
+
+
+.button button .play-ctf:hover {
+	color: rgba(255, 0, 0, 0.99);
+
+}
+.button button .play-ctf {
+  font-size: 40px; /* Font size for "PLAY CTF" */
+	color:rgba(180, 0, 0, 0.95);
+	font-weight: bold;
+	padding: 10px 10px; /* Adjust the padding as needed */
+}
+
+.button button span {
+  display: block;
+  font-size: 15px; /* Font size for the second line 
+	*/
+	color: rgba(0, 255, 0, 0.8);
+}
+
+
+.button button.pressed {
+  transform: scale(0.95); /* Apply scale transformation when pressed */
+	background: rgba(0, 199, 0, 0.99);
+	
+	transform: translate(0, 0.25em); /* Move the button down slightly */
+}
+
+
+.button button.pressed::before {
+  box-shadow: 0 0 0 2px #b18597, 0 0.5em 0 0 #ffe3e2; /* Change box shadow when pressed */
+  transform: translate3d(0, 0.5em, -1em); /* Move the pseudo-element down slightly */
+}
+
+
+
+
+
+.image-container {
+  position: absolute;  /* Fix image to viewport */
+  top: 14.7%;
+  right:24%;
+}
+
+.center-image {
+  /* Additional styles for the image itself (optional) */
+	box-shadow: 0 0 300px #333333;
+	border-radius: 30px;
+	width: 110%;
+	height: 78vh;
+	transition: transform 0.5s ease-in-out, text-shadow 0.5s ease-in-out;
+}
+
+.center-image::before {
+	transition: width 0.7s ease;
+}
+
+.center-image:hover {
+	transform: translateY(-8px);
+	box-shadow: 0 0 300px rgba(150, 0, 0, 0.5);
+}
+
+
+
+.text-box {
+	height: 55vh;
+  width: 48%;
+  position: absolute; /* Position the text box */
+  top: 100% ; /* Adjust the top position */
+	bottom: 41.3%;
+  right: 24%; /* Adjust the left position */
+  background-color: transparent; /* Background color with 80% opacity */
+  padding: 20px; /* Add some padding */
+  border: 2px solid rgba(180, 0, 0, 0.95); /* Add a border */
+  border-radius: 20px; /* Add border radius for rounded corners */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* Add box shadow for depth */
+  transition: transform 0.3s ease; /* Add transition for smooth effect */
+	transition: transform 0.5s ease-in-out, text-shadow 0.5s ease-in-out;
+}
+
+
+.text-box textarea {
+	height: 53vh;
+  width: 97%;
+	background-color: transparent ;
+	border-radius: 10px;
+	border: 2px dashed grey;
+	padding: 14px 14px; /* Add some padding */
+	font-size: 15px ;
+  color: rgb(0, 200, 0); /* Neon green color */
+  text-shadow:  0 0 20px #00ff00; /* Neon glow effect */
+}
+
+.text-box textarea::before {
+	transition: width 0.7s ease;
+}
+
+.text-box textarea:hover{
+color: #00ff00;
+}
+
+.text-box:hover {
+  transform: scale(1.04); /* Scale up on hover */
+	box-shadow: 0 0 200px rgba(150, 0, 0, 0.5);
+	
+}
+
+
+
+
+
+
+
+/* CSS for the eye */
+.eye {
+  position: fixed;
+  width: 50px;
+  height: 50px;
+  background-color: white;
+  border: 2px solid black;
+  border-radius: 50%;
+  left: 20px; /* Initial position */
+  bottom: 20px; /* Initial position */
+  overflow: hidden; /* Hide overflow */
+}
+
+.pupil {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background-color: black;
+  border-radius: 50%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
