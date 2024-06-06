@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Starfield Background</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+      body{
+        background-color:black;
+            /* /COLORS/ */
+        --white: #F7F1E1;
+        --cream: #F6E6CB;
+        --dcream: #EACEA3;
+        --beige: #CDAD93;
+        --terracotta: #B9816D;
+        --dterracotta: #885444;
+        --peach: #E5AE8A;
+        --orange: #BF835A;
+        --green: #4B5243;
+        --dgreen: #2C3834;
+        
+        /* /FONTS/ */
+        --mono: 'source-code-pro';
+        --display: 'lust-sans';
+        }
+
+        .box1{
+        
+          height:45vh;
+          width:100%;
+          background-color:black;
+          display:flex;
+          flex-direction: column;
+          justify-content:center;
+          align-items:center;   
+        }
+
+        .main-text{
+          height:80%;
+          width:100%;
+          display:flex;
+          flex-direction: column;
+          align-items:center;
+          justify-content:center;
+        }
+        .main-text-animation {
+          font-size: 40px;
+          font-weight: bold;
+          text-align: center;
+          color: rgb(100, 6, 6);
+          margin-bottom: 0;
+          text-transform: uppercase;
+          letter-spacing: 4px;
+          text-shadow: 4px 4px #00FF00;
+          animation-duration: 0.01s;
+          animation-name: textflicker;
+          animation-iteration-count: infinite;
+          animation-direction: alternate;
+        }
+        .main-text-anim{
+           text-align: center;
+          display:flex;
+          align-items:center;
+          justify-content:center;
+          font-size:25px;
+          font-family: 'Tourney', cursive;
+          color:white;
+          text-shadow: 0 2px 10px rgba(255, 255, 255, 0.932);
+        }
+        
+        @keyframes textflicker {
+          from {
+              text-shadow: 2px 0 0 #f2f2f2, -2px 0 0 #eaeee8;
+          }
+          to {
+              text-shadow: 4px 1px 2px #a8afa8, -1px -0.5px 2px #989e98;
+          }
+        }
+        
+
+        .heading {
+          font-size: 30px;;
+          text-shadow: 0 2px 10px rgba(255, 255, 255, 0.932);
+          font-family: 'Tourney', cursive;
+          margin:12px;
+          letter-spacing: 2px;
+          color:white;
+          width:100%;
+          height:20%;
+          display:flex;
+          align-items:center;
+          justify-content:center;
+        }
+        .box{
+            height:100vh;
+            width:100%;
+            display:flex;
+            flex-direction: row; /* Ensure children are aligned horizontally */
+            justify-content:center;
+            align-items:center;
+        }
+
+        .right {
+            width:45%;
+            transition: width 0.3s ease; 
+        }
+
+        .left{
+            height:80%;
+            width:40%;
+    }
+      
+      .minip {
+        width: 80%;
+        height: 100%;
+        background-image: url('https://i.postimg.cc/MK9HRk1C/bg1.jpg');
+        opacity: 0.7;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+        position: relative;
+        box-shadow: 0px 0px 5px var(--terracotta);
+      }
+      .minip .mg {
+        width: 20vw;
+        height: 30vh;
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        display: grid;
+        grid-template-columns: 250px 50px;
+        grid-template-rows: 100px 150px;
+        grid-template-areas: 
+          'clr group'
+          'clr .....';
+        transition:
+          grid-template-columns .6s linear,
+          grid-template-rows .6s linear;
+      }
+
+     
+      .minip .mg .clr {
+        margin-bottom:10px;
+        width:100%;
+        grid-area: clr;
+        background-color: black;
+      }
+      .terminal {width:100%;height:100%;border: 2px solid grey;border-radius:5px;background-color:black;}
+        .ribbon {width:100%;height:10%;border: 1px solid grey;border-radius:3px;background-color:grey;
+        padding-bottom:5px;}
+        .circle {float:left;width:20px;}
+        .terminal-title {color:white;padding-left:65px;}
+        .terminal-content { width:100%;height:80%;color:white;padding-left:3px;padding-top:0px;float:left;margin-top:-110px;}
+        .terminal-text{
+          display:flex;
+          align-items:center;
+          justify-content:center;
+        }
+        .auto-type{
+          font-family: 'Tourney', cursive;
+          color:white;
+          text-shadow: 0 2px 10px rgba(255, 255, 255, 0.932);
+        }
+      .minip .mg .group {
+        font: 10px/10px var(--mono);
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        writing-mode: vertical-lr;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .minip .mg .group span {
+        display: block;
+        transform: rotate(180deg);
+        transition:
+          transform .6s linear;
+      }
+      .minip:hover .mg .group span {
+       
+        transform: rotate(270deg);
+        transition:
+          transform .6s linear;
+      }
+      
+      .minip .av {
+        border: 2px solid grey;
+        border-radius: 12px;
+        width: 20vw;
+        height: 45vh;
+        position: absolute;
+        bottom: 0px;
+        right: 0px;
+        background-color: black;
+        background-position: top center;
+        background-size: cover;
+        transition:
+          width .6s linear,
+          height .6s linear;
+      }
+      .av:hover {
+        z-index: 1;
+        width: 25vw;
+        height: 60vh;
+        transition:
+          width .4s linear,
+          height .4s linear;
+      }
+      
+      .minip .info {
+        margin-top:10px;
+        width: 15vw;
+        height: 15vh;
+        padding: 25px;
+        position: absolute;
+        bottom: 70px;
+        left: 0px;
+        background: rgb(88, 7, 7);
+        display: flex;
+        flex-flow: column nowrap;
+        justify-content: center;
+        align-content: flex-start;
+        transition: 
+          bottom .6s linear;
+      }
+      .minip:hover .info {
+       z-index: 0;
+      }
+      .minip .info name {
+        display: block;
+        font: 200 25px/30px var(--display);
+        text-indent: -25px;
+        letter-spacing: 1px;
+        margin: 0px 0px 10px 25px;
+      }
+      .minip .info deets {
+        font: 10px/15px var(--mono);
+        text-transform: uppercase;
+        letter-spacing: 1px;
+      }
+      
+      /*.minip a.plot {
+        width: 110px;
+        height: 30px;
+        position: absolute;
+        bottom: 85px;
+        left: 85px;
+        background-color: rgb(87, 6, 6);
+        font: 10px/10px var(--mono);
+        text-transform: uppercase;
+        color: var(--white);
+        text-decoration: none;
+        letter-spacing: 1px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: 
+          bottom .6s linear;
+      }
+      .minip:hover a.plot {
+       z-index:1;
+
+      }
+      */
+        .right{
+            height:80%;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            border-radius: 5px;
+            position: relative;
+            margin:5px;
+            transition: transform 0.5s ease-in-out, text-shadow 0.5s ease-in-out;
+        }
+
+        /*.right:before {
+            position: absolute;
+            content: '';
+            top: -2px;
+            left: -2px;
+            height: calc(100% + 4px);
+            width: calc(100% + 4px);
+            border-radius: 5px;
+            z-index: -1;
+            opacity: 1; 
+            filter: blur(5px);
+            background: linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
+            background-size: 400%;
+            animation: animate 20s linear infinite; 
+        }
+        .right::before {
+            transition: width 0.7s ease;
+        }
+        
+        .right:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 0 300px rgba(150, 0, 0, 0.5);
+        }
+        #info{
+            opacity: 1;
+        }
+        @keyframes animate {
+            0% { background-position: 0 0; }
+            50% { background-position: 400% 0; }
+            100% { background-position: 0 0; }
+        }*/
+        
+
+          
+        .first{
+            height:100vh;
+            width:100vw;
+            object-fit: fill;
+        }
+        
+        .image{
+            height:100%;
+            width:100%;
+            object-fit: cover; 
+        }
+
+        .card {
+          width: 82%;
+          height: 100%;
+          position: relative;
+          display: flex;
+          justify-content: center;
+          align-items: flex-end;
+          padding: 0 4.5%;
+          perspective: 2500px;
+          margin: 0 50px;
+        }
+        
+        .cover-image {
+          width: 100%;
+          height: 100%;
+          object-fit: fill;
+        }
+        
+        .wrapper {
+          transition: all 0.5s;
+          position: absolute;
+          width: 100%;
+          height:100%;
+          z-index: -1;
+        }
+        
+        .card:hover .wrapper {
+          transform: perspective(700px) translateY(-5%) rotateX(25deg) translateZ(0);
+          box-shadow: 2px 35px 32px -8px rgba(0, 0, 0, 0.75);
+          -webkit-box-shadow: 2px 35px 32px -8px rgba(0, 0, 0, 0.75);
+          -moz-box-shadow: 2px 35px 32px -8px rgba(0, 0, 0, 0.75);
+        }
+        
+        .wrapper::before,
+        .wrapper::after {
+          content: "";
+          opacity: 0;
+          width: 80%;
+          height: 80px;
+          transition: all 0.5s;
+          position: absolute;
+          left: 0;
+        }
+        .wrapper::before {
+          top: 0;
+          height: 80%;
+          background-image: linear-gradient(
+            to top,
+            transparent 46%,
+            rgba(12, 13, 19, 0.5) 68%,
+            rgba(12, 13, 19) 97%
+          );
+        }
+        .wrapper::after {
+          bottom: 0;
+          opacity: 1;
+          background-image: linear-gradient(
+            to bottom,
+            transparent 46%,
+            rgba(12, 13, 19, 0.5) 68%,
+            rgba(12, 13, 19) 97%
+          );
+        }
+        
+        .card:hover .wrapper::before,
+        .wrapper::after {
+          opacity: 1;
+        }
+        
+        .card:hover .wrapper::after {
+          height: 80px;
+        }
+        .title {
+          width: 100%;
+          transition: transform 0.5s;
+        }
+        .card:hover .title {
+          transform: translate3d(0%, -50px, 100px);
+        }
+        
+        .character {
+          width: 75%;
+          opacity: 0;
+          transition: all 0.5s;
+          position: absolute;
+          z-index: -1;
+        }
+        
+        .card:hover .character {
+          opacity: 1;
+          
+        }
+
+        /* box end */
+        .box-end{
+        
+          display:flex;
+          align-items:center;
+          justify-content:center;
+          height:30vh;
+          width:100%;
+        }
+        .contributors{
+          color:white;
+        }
+        
+        
+        
+  </style>
+</head>
+
+<body>
+  <div class="box1">
+    <div class="heading">
+      <h1>WELCOME TO SECVIT CTF!</h1>
+    </div>
+    <div class="main-text">
+        <p class="main-text-animation">Prize pool of Rs XXXX and XXXXXXXX VOUCHERS</p>
+        <p class="main-text-anim">The ultimate challenge for cybersecurity enthusiasts.<br>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Iste reiciendis nobis accusantium fuga blanditiis error odit assumenda reprehenderit officia ea.</p>
+    </div>
+    <div class="text">
+
+    </div>
+  </div>
+  <div class="box">
+    <div class="right">
+      <div class="card">
+        <div class="wrapper">
+          <img src="https://i.ibb.co/ZxG0n0s/Snapinsta-app-446969242-1388759395133638-7302650788153922793-n-1080.jpg" class="cover-image" />
+        </div>
+        <img src="https://i.ibb.co/RCqqvH2/Cartoon-phineas-and-ferb.webp" class="character" />
+    </div>
+</div>
+    <div class="left">
+        <div class="minip">
+            <div class="mg">
+              <div class="clr">
+                <div class='terminal'>
+                  <div class='ribbon'>
+                  <div class='circle' ><svg><circle cx="10" cy="10" r="5" fill="red" /></svg></div>
+                  <div class='circle' ><svg><circle cx="10" cy="10" r="5" fill="yellow" /></svg></div>
+                  <div class='circle' ><svg><circle cx="10" cy="10" r="5" fill="black" /></svg></div>
+                  <div class='terminal-title' >SRCtube@Linux:~</div>
+                  </div>
+                  <div class='terminal-content'>SRCtube@Linux:~$ | <br>
+                      <div class="terminal-text">
+                        <p class="auto-type"></p>
+                      </div>
+                  </div>
+                </div>
+              </div>
+              <div class="group">
+                <span>SECVIT</span>
+              </div>
+            </div>
+            <div class="av" style="background-image:url('https://i.ibb.co/T0T2nv9/4-removebg-preview.png');"></div>
+            <div class="info">
+              <name>join today</name>
+              <p class="text">
+                make your team today<br>
+                and play best national CTF 
+              </p>
+            </div>
+          </div>
+    </div>
+  
+</div>
+<div class="box-end">
+    <div class="contributors">
+      <h2>OUR CONTRIBUTORS</h2>
+    </div>
+</div>
+</div>
+<script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
+<script>
+  var typed = new Typed('.auto-type', {
+    strings: ['Lorem ipsum dolor sit, amet consectetur adipisicing elit. Culpa voluptate aperiam tempore nesciunt omnis dolorem dolor porro consequatur temporibus reiciendis.'],
+    typeSpeed: 80,
+    loop:true,
+  });
+</script>
+</body>
+
+</html>
