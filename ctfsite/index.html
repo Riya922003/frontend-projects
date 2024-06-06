@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Starfield Background</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <header>
+    <div class="container">
+      <img class="logo" src="https://iqac.vit.ac.in/images/vit-logo-only.png" alt="Left Logo">
+      <nav>
+        <a href="#">CTF</a>
+        <a href="#">RULES</a>
+        <a href="#">HELP</a>
+        <a href="#">FAQ</a>
+      </nav>
+      <img class="logo2" src="https://i.ibb.co/nBMNRKt/Untitled-design-2.png" alt="Right Logo">
+    </div>
+  </header>
+  
+
+  <div class="image-container">
+    <img class="center-image" src="https://i.postimg.cc/T2b3rYHm/temp-Imaged-IZVb-B.avif" alt="Center Image">
+  </div>
+  <div class="starfield" title="This is a starfield background."></div>
+
+  <!-- Text box with Lorem Ipsum -->
+  <div class="text-box">
+    <textarea readonly rows="15" cols="45">
+                  RULES FOR CTF
+		
+x**x
+		
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed accumsan lorem eget urna faucibus, nec tempor metus viverra. Nullam et risus non libero interdum cursus non vel mauris. In hac habitasse platea dictumst. Cras porttitor, magna id consectetur tincidunt, mauris lorem fermentum nunc, sit amet ultrices lectus risus auctor velit. Donec id tellus nisi. Nam a odio eu nisl vestibulum tincidunt. Pellentesque fermentum dolor non tortor volutpat, ac suscipit ipsum pharetra. Proin in arcu tellus. Nam fermentum vestibulum velit, non aliquam justo rhoncus a. Mauris suscipit elit vitae tortor laoreet, eu laoreet neque dignissim. Nulla facilisi. Nulla facilisi.
+
+      Phasellus id erat tincidunt, volutpat justo non, fermentum tortor. Aenean vulputate enim in eros facilisis, nec ultrices metus fermentum. Integer in turpis odio. Fusce nec luctus leo. Fusce elementum quam id lectus malesuada, et ultricies est bibendum. Mauris id dolor sed justo mattis pretium. Ut sed turpis justo. Morbi ac est non lectus iaculis rhoncus a in elit. Phasellus mattis magna eget felis hendrerit vehicula. Fusce iaculis felis eu urna tincidunt, id tempor neque fringilla. Integer nec orci nulla. Aliquam vel felis nec turpis tempor volutpat. Donec eget mauris elit. Integer convallis laoreet dui, at ultricies lorem venenatis in.
+
+      Maecenas ut ex a elit eleifend efficitur sed in velit. Nam quis ipsum id quam lobortis finibus a et metus. Curabitur pulvinar urna sit amet metus dapibus varius. Aliquam ultrices, mauris ac tempus rhoncus, velit eros malesuada dui, et sollicitudin purus turpis ut ipsum. Cras volutpat tincidunt sem nec lacinia. Suspendisse potenti. Nulla facilisi. Proin vulputate tortor at erat rhoncus, at feugiat nunc egestas. Morbi molestie consequat neque, vel fringilla ipsum elementum nec. Nullam fermentum arcu nec quam lacinia, eu dictum sem condimentum. Vivamus hendrerit erat in mi ultricies pharetra. Duis at nunc in tortor facilisis pellentesque. Nullam id sapien non enim euismod aliquet. Fusce malesuada velit at fermentum suscipit. Aliquam erat volutpat.
+
+  
+    </textarea>
+  </div>
+	<div class="button">
+    <button><span class="play-ctf">  PLAY  </span></button>
+  </div>
+	<!-- Footer with blurry background -->
+	
+	<div class="eye" id="eye">
+    <div class="pupil"></div> <!-- Pupil inside the eye -->
+  </div>
+	<script src="new3.js"></script> <!-- Link to external JavaScript file -->
+
+  
+	<div id="songBox"></div>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const starfield = document.querySelector(".starfield");
+    
+        // Function to generate a random number within a range
+        function getRandomNumber(min, max) {
+            return Math.random() * (max - min) + min;
+        }
+    
+        // Function to create a star element
+        function createStar() {
+            const star = document.createElement("div");
+            star.classList.add("star");
+            star.style.left = `${getRandomNumber(0, 100)}vw`;
+            star.style.top = `${getRandomNumber(0, 100)}vh`;
+            star.style.width = `${getRandomNumber(1, 2)}px`;
+            star.style.height = `${getRandomNumber(1, 2)}px`;
+            starfield.appendChild(star);
+        }
+    
+        // Generate many stars
+        for (let i = 0; i < 1000; i++) {
+            createStar();
+        }
+    
+        // Function to make stars fade in and out
+        function blinkStars() {
+            const stars = document.querySelectorAll(".star");
+            stars.forEach(star => {
+                const duration = getRandomNumber(1, 4); // Randomize duration for each star
+                star.style.animation = `blink ${duration}s infinite alternate`;
+            });
+        }
+    
+        // Blink stars
+        blinkStars();
+    });
+    
+    
+    // JavaScript for the eye movement
+    document.addEventListener("DOMContentLoaded", function () {
+        const eye = document.getElementById("eye");
+        const pupil = eye.querySelector(".pupil");
+    
+        document.addEventListener("mousemove", function (event) {
+            // Get the position of the eye relative to the viewport
+            const eyeRect = eye.getBoundingClientRect();
+    
+            // Calculate the center of the eye
+            const eyeCenterX = eyeRect.left + eyeRect.width / 2;
+            const eyeCenterY = eyeRect.top + eyeRect.height / 2;
+    
+            // Calculate the angle between the cursor and the center of the eye
+            const angle = Math.atan2(event.clientY - eyeCenterY, event.clientX - eyeCenterX);
+    
+            // Calculate the maximum displacement for the pupil
+            const maxDisplacement = Math.min(eyeRect.width, eyeRect.height) * 0.2;
+    
+            // Calculate the position of the pupil
+            const pupilX = Math.cos(angle) * maxDisplacement;
+            const pupilY = Math.sin(angle) * maxDisplacement;
+    
+            // Apply the position to the pupil
+            pupil.style.transform = `translate(-50%, -50%) translate(${pupilX}px, ${pupilY}px)`;
+    
+        });
+    });
+    
+    
+    
+    document.addEventListener('DOMContentLoaded', function() {
+      const button = document.querySelector('.button button');
+      
+      button.addEventListener('mousedown', function() {
+        button.classList.add('pressed');
+      });
+      
+      button.addEventListener('mouseup', function() {
+        button.classList.remove('pressed');
+      });
+    });
+    
+    
+    
+    
+    // document.addEventListener('DOMContentLoaded', function() {
+    //   const songBox = document.getElementById('songBox');
+    //   const songTitle = 'Your Song Title';
+    //   const songArtist = 'Artist Name';
+    //   const songSource = 'https://pagalfree.com/musics/128-Heer%20Aasmani%20-%20Fighter%20128%20Kbps.mp3'; // Replace 'your_song.mp3' with the path to your audio file
+      
+    //   // Create elements for song title and artist
+    //   const titleElement = document.createElement('h3');
+    //   titleElement.textContent = Now Playing: ${songTitle} - ${songArtist};
+    
+    //   // Create audio player
+    //   const audioPlayer = document.createElement('audio');
+    //   audioPlayer.id = 'audioPlayer';
+    //   audioPlayer.controls = false; // Hide the default playback controls
+    //   const source = document.createElement('source');
+    //   source.src = songSource;
+    //   source.type = 'audio/mpeg';
+    //   audioPlayer.appendChild(source);
+    
+    //   // Create play button
+    //   const playButton = document.createElement('button');
+    //   playButton.classList.add('playButton');
+    //   playButton.innerHTML = <img src="https://svgsilh.com/svg/468292.svg" alt="Play Icon" width="100">;
+    
+    
+    //   // Add event listener to play button
+    //   playButton.addEventListener('click', function() {
+    //     if (audioPlayer.paused) {
+    //       audioPlayer.play(); // Start playing the audio
+    //     } else {
+    //       audioPlayer.pause(); // Pause the audio
+    //     }
+    //   });
+    
+    //   // Append elements to songBox
+    //   songBox.appendChild(titleElement);
+    //   songBox.appendChild(audioPlayer);
+    //   songBox.appendChild(playButton);
+    // });
+  </script>
+</body>
+
+</html>
