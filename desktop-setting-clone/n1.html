@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sidebar</title>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Poppins", sans-serif;
+        }
+        body{
+            background-color:black;
+        }
+        .sidebar {
+            position: fixed;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 78px;
+            background: transparent;
+            padding: 6px 14px;
+            z-index: 1;
+            transition: all 0.5s ease;
+        }
+        
+        .sidebar.open {
+            width: 250px;
+        }
+        
+        .sidebar .logo-details {
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: relative;
+        }
+        
+        .sidebar .logo-details .logo_name {
+            color: #fff;
+            font-size: 20px;
+            font-weight: 600;
+            opacity: 0;
+            transition: all 0.5s ease;
+        }
+        
+        .sidebar.open .logo-details,
+        .sidebar.open .logo-details .logo_name {
+            opacity: 1;
+        }
+        
+        .sidebar .logo-details #btn {
+            position: absolute;
+            top: 50%;
+            right: 0;
+            transform: translateY(-50%);
+            font-size: 22px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.5s ease;
+        }
+        
+        .sidebar.open .logo-details #btn {
+            text-align: center;
+        }
+        
+        .sidebar i {
+            color: #fff;
+            height: 60px;
+            min-width: 50px;
+            font-size: 28px;
+            text-align: center;
+            line-height: 60px;
+        }
+        
+        .sidebar .nav-list {
+            margin-top: 20px;
+            height: 100%;
+        }
+        
+        .sidebar li {
+            position: relative;
+            margin: 8px 0;
+            list-style: none;
+        }
+        
+        .sidebar input {
+            font-size: 15px;
+            color: #fff;
+            font-weight: 400;
+            outline: none;
+            height: 50px;
+            width: 100%;
+            border: none;
+            border-radius: 12px;
+            transition: all 0.5s ease;
+            background: #1d1b31;
+        }
+        
+        .sidebar.open input {
+            padding: 0 20px 0 50px;
+            width: 100%;
+        }
+        
+        .sidebar .bx-search {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            transform: translateY(-50%);
+            font-size: 22px;
+            background: #1d1b31;
+            color: #fff;
+        }
+        
+        .sidebar .bx-search:hover {
+            background: #fff;
+            color: #11101D;
+        }
+        
+        .sidebar.open .bx-search:hover {
+            background: #1d1b31;
+            color: #fff;
+        }
+        
+        .sidebar li i {
+            height: 50px;
+            line-height: 50px;
+            font-size: 18px;
+            border-radius: 12px;
+        }
+        
+        .sidebar li a {
+            display: flex;
+            height: 100%;
+            width: 100%;
+            border-radius: 12px;
+            align-items: center;
+            text-decoration: none;
+            transition: all 0.4s ease;
+            background: #11101D;
+        }
+        
+        .sidebar li a:hover {
+            background: #fff;
+        }
+        
+        .sidebar li a .links_name {
+            color: #fff;
+            font-size: 15px;
+            font-weight: 400;
+            white-space: nowrap;
+            opacity: 0;
+            pointer-events: none;
+            transition: 0.4s;
+        }
+        
+        .sidebar.open li a .links_name {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        
+        .sidebar li a:hover .links_name,
+        .sidebar li a:hover i {
+            transition: all 0.5s ease;
+            color: #11101D;
+        }
+        
+        .sidebar li .tooltip {
+            position: absolute;
+            top: -20px;
+            left: calc(100% + 15px);
+            background: #fff;
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+            padding: 6px 12px;
+            border-radius: 4px;
+            font-size: 15px;
+            font-weight: 400;
+            opacity: 0;
+            white-space: nowrap;
+            pointer-events: none;
+            transition: 0s;
+        }
+        
+        .sidebar li:hover .tooltip {
+            opacity: 1;
+            pointer-events: auto;
+            transition: all 0.4s ease;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        
+        .sidebar.open li .tooltip {
+            display: none;
+        }
+        
+        .sidebar li.profile {
+            position: fixed;
+            height: 60px;
+            width: 78px;
+            left: 0;
+            bottom: -8px;
+            padding: 10px 14px;
+            background: #1d1b31;
+            transition: all 0.5s ease;
+            overflow: hidden;
+        }
+        
+        .sidebar.open li.profile {
+            width: 250px;
+        }
+        
+        .sidebar li .profile-details {
+            display: flex;
+            align-items: center;
+            flex-wrap: nowrap;
+        }
+        
+        .sidebar li img {
+            height: 45px;
+            width: 45px;
+            object-fit: contain;
+            border-radius: 6px;
+            margin-right: 10px;
+        }
+        
+        .sidebar li.profile .name,
+        .sidebar li.profile .job {
+            font-size: 15px;
+            font-weight: 400;
+            color: #fff;
+            white-space: nowrap;
+        }
+        
+        .sidebar li.profile .job {
+            font-size: 12px;
+        }
+        
+        .sidebar .profile #log_out {
+            position: absolute;
+            top: 50%;
+            right: 0;
+            transform: translateY(-50%);
+            background: #1d1b31;
+            width: 100%;
+            height: 60px;
+            line-height: 60px;
+            transition: all 0.5s ease;
+        }
+        
+        .sidebar.open .profile #log_out {
+            width: 50px;
+            background: none;
+        }
+        
+        .home-section {
+            position: relative;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            flex-direction:column;
+            min-height: 100vh;
+            top: 0;
+            left: 10px;
+            width: calc(100% -240px);
+            transition: all 0.5s ease;
+        }
+        
+        .sidebar.open~.home-section {
+            left: 100px;
+            padding:20px;
+            width: calc(100%-250px);
+        }
+        
+        .home-section .text {
+            display: inline-block;
+            color: white;
+            font-size: 25px;
+            font-weight: 500;
+            margin: 18px;
+        }
+
+        .container{
+            box-sizing:border-box;
+            padding:10px 50px;
+            border-radius:20px;
+            width:450px;
+            display:flex;
+            flex-direction:column;
+            gap:10px;
+        }
+        h1,h3{
+            font-weight:600;
+            padding-left:20px;
+        }
+       
+        #display-settings{
+            display:flex;
+            flex-direction:column;
+            width:80%;
+            height:100%;
+          
+
+        }
+
+        label{
+            width:100%;
+            padding-bottom:12px;
+            padding-right: 20px;
+            padding-left: 20px;
+            background: rgba(255, 255, 255, 0.1); /* Slightly transparent background */
+            backdrop-filter: blur(10px); /* Apply blur effect */
+            border-radius: 10px; /* Optional: add rounded corners */
+         
+        }
+        /* Existing styles remain the same */
+
+#display-settings {
+    margin-top: 30px;
+    padding: 20px;
+    background-color: #11101D;
+    border-radius: 12px;
+    color: white;
+    transition: all 0.5s ease;
+}
+
+#display-settings h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+#display-settings label {
+    display: block;
+    margin-bottom: 15px;
+}
+
+#display-settings input[type="checkbox"],
+#display-settings input[type="number"],
+#display-settings input[type="color"],
+#display-settings select {
+    width: 100%;
+    padding: 8px;
+    border: none;
+    border-radius: 6px;
+    background-color: #1d1b31;
+    color: white;
+    font-size: 14px;
+    outline: none;
+}
+
+#display-settings input[type="checkbox"] {
+    vertical-align: middle;
+}
+
+#display-settings input[type="color"] {
+    height: 32px;
+}
+
+#display-settings select {
+    height: 32px;
+    background-color: #1d1b31;
+    color: white;
+}
+
+#display-settings select option {
+    background-color: #1d1b31;
+    color: white;
+}
+
+#display-settings label select {
+    margin-left: 10px;
+}
+
+#display-settings input[type="checkbox"]:checked + div.toggle-c {
+    left: 30px;
+}
+.futuristic-toggle {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+  
+    
+}
+
+ .futuristic-toggle input {
+    display: none;
+  
+}
+
+.futuristic-slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #444;
+    transition: 0.4s;
+    border-radius: 34px;
+}
+
+ .futuristic-slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: #fff;
+    transition: 0.4s;
+    border-radius: 50%;
+}
+
+ .futuristic-toggle input:checked + .futuristic-slider {
+    background-color: #00b3ff;
+}
+
+.futuristic-toggle input:checked + .futuristic-slider:before {
+    transform: translateX(26px);
+}
+.first{
+    display:flex;
+    flex-direction:row;
+}
+.screen{
+    padding-top:12px;
+}
+
+.colors{
+    padding-top:12px;
+}
+.font{
+    padding-top:12px;
+}
+    </style>
+</head>
+
+<body>
+    <div class="sidebar">
+        <div class="logo-details">
+            <div class="logo_name" id="clickableText">constGenius</div>
+            <i class='bx bx-menu' id="btn"></i>
+        </div>
+        <ul class="nav-list">
+            <li>
+                <i class='bx bx-search'></i>
+                <input type="text" placeholder="Search...">
+                <span class="tooltip">Search</span>
+            </li>
+            <li>
+                <a href="">
+                    <i class='bx bx-grid-alt'></i>
+                    <span class="links_name">Dashboard</span>
+                </a>
+                <span class="tooltip">Dashboard</span>
+            </li>
+            <li>
+                <a href="">
+                    <i class='bx bx-user'></i>
+                    <span class="links_name">User</span>
+                </a>
+                <span class="tooltip">User</span>
+            </li>
+            <li>
+                <a href="">
+                    <i class='bx bx-chat'></i>
+                    <span class="links_name">Messages</span>
+                </a>
+                <span class="tooltip">Messages</span>
+            </li>
+            <li>
+                <a href="">
+                    <i class='bx bx-pie-chart-alt-2'></i>
+                    <span class="links_name">Analytics</span>
+                </a>
+                <span class="tooltip">Analytics</span>
+            </li>
+            <li>
+                <a href="">
+                    <i class='bx bx-folder'></i>
+                    <span class="links_name">Files</span>
+                </a>
+                <span class="tooltip">Files</span>
+            </li>
+            <li>
+                <a href="">
+                    <i class='bx bx-cart-alt'></i>
+                    <span class="links_name">Order</span>
+                </a>
+                <span class="tooltip">Order</span>
+            </li>
+            <li>
+                <a href="">
+                    <i class='bx bx-heart'></i>
+                    <span class="links_name">Saved</span>
+                </a>
+                <span class="tooltip">Saved</span>
+            </li>
+            <li>
+                <a href="">
+                    <i class='bx bx-cog'></i>
+                    <span class="links_name">Settings</span>
+                </a>
+                <span class="tooltip">Settings</span>
+            </li>
+        </ul>
+    </div>
+    <section class="home-section">
+        <div id="display-settings" class="settings-tab">
+            <h3 style="color:white;">Display Settings</h3>
+            <div class="first">
+                <label style="color:white;">Adaptive Brightness
+                    <div class="futuristic-toggle">
+                        <input type="checkbox" id="wifi" checked>
+                        <span class="futuristic-slider"></span>
+                    </div>
+                </label>
+            </div>
+            <div class="first">
+                <label style="color:white;">Eye Protection
+                    <div class="futuristic-toggle">
+                        <input type="checkbox" id="wifi" checked>
+                        <span class="futuristic-slider"></span>
+                    </div>
+                </label>
+            </div>
+            <div class="Second">
+                <label style="color:white;">Dark Theme
+                    <div class="futuristic-toggle">
+                        <input type="checkbox" id="wifi" checked>
+                        <span class="futuristic-slider"></span>
+                    </div>
+                </label>
+            </div>
+            <div class="third">
+                <label style="color:white;">Auto Rotate Screen
+                    <div class="futuristic-toggle">
+                        <input type="checkbox" id="wifi" checked>
+                        <span class="futuristic-slider"></span>
+                    </div>
+                </label>
+            </div>
+            <div class="fourth">
+                <label style="color:white;">Adaptive Brightness
+                    <div class="futuristic-toggle">
+                        <input type="checkbox" id="wifi" checked>
+                        <span class="futuristic-slider"></span>
+                    </div>
+                </label>
+            </div>
+            <label class="screen" style="color:white;">Screen Timeout (minutes)
+                <input type="number" min="1"  > 
+            </label>
+            <label class="colors" style="color:white;">Screen Colors
+                <input type="color"  > 
+            </label>
+            <label class="font" >Font Display
+                <select>
+                    <option>Default</option>
+                    <option>Bold</option>
+                    <option>Italic</option>
+                </select> 
+            </label>
+        </div>
+
+    </section>
+
+<script>
+    let sidebar = document.querySelector(".sidebar");
+let closeBtn = document.querySelector("#btn");
+let searchBtn = document.querySelector(".bx-search");
+
+closeBtn.addEventListener("click", () => {
+    sidebar.classList.toggle("open");
+    menuBtnChange();
+})
+
+searchBtn.addEventListener("click", () => {
+    sidebar.classList.toggle("open");
+    menuBtnChange();
+})
+
+function menuBtnChange() {
+    if (sidebar.classList.contains("open")) {
+        closeBtn.classList.replace("bx-menu", "bx-menu-alt-right");
+    } else {
+        closeBtn.classList.replace("bx-menu-alt-right", "bx-menu");
+    }
+}
+
+function new1() {
+    let clickCount = 0;
+
+const clickableText = document.getElementById('clickableText');
+
+clickableText.addEventListener('click', function() {
+  clickCount++;
+  if (clickCount === 3) {
+    window.location.href = 'form.html';
+    clickCount = 0;
+  }
+});
+}
+
+new1();
+</script>
+</body>
+
+</html>
